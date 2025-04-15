@@ -71,4 +71,7 @@ def index():
     )
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 10000)))
+    # Get port from environment variable or default to 10000
+    port = int(os.environ.get("PORT", 10000))
+    # Bind to 0.0.0.0 to make the app accessible externally
+    app.run(host="0.0.0.0", port=port)
