@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Connect Four</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin: 0 auto;
+        }
+        td {
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            vertical-align: middle;
+            border: 1px solid black;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        form {
+            text-align: center;
+            margin-top: 20px;
+        }
+        input[type="submit"] {
+            font-size: 16px;
+            padding: 5px 10px;
+            margin: 0 5px;
+        }
+        .winner {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Connect Four</h1>
+
+    <h2>Games</h2>
+    <form method="get" action="{{ url_for('index') }}">
+        <label for="game">Select a Connect4 game:</label>
+        <!-- <select name="game" id="game" onchange="this.form.submit()">
+            <option value="game">with Evaluation Function</option>
+            <option value="game1">Fail-Soft Alpha Beta pruning</option>
+            <option value="game2">Fail-Hard Alpha Beta pruning</option>
+        </select> -->
+
+        <select name="game" id="game" onchange="this.form.submit()">
+            {% if game_name != 'Plain Evaluation Function' %}
+            <option value="Plain Evaluation Function">Plain Evaluation Function</option>
+            {% endif %}
+            {% for name, instance in game_instances.items() %}
+            <option value="{{ name }}" {% if instance == game %}selected{% endif %}>{{ name }}</option>
+            {% endfor %}
+        </select>
+    </form>
+
+    {% if request.args.get('game') %}
+    <p>Selected game: {{ request.args.get('game') }}</p>
+    {% endif %}
+
+    <form method="post">
+        <table>
+            {% for row in board %}
+            <tr>
+                {% for cell in row %}
+                <td>
+                    {% if cell == "🔴" %}
+                    <span style="color: red;">{{ cell }}</span>
+                    {% elif cell == "🟡" %}
+                    <span style="color: yellow;">{{ cell }}</span>
+                    {% else %}
+                    &nbsp;
+                    {% endif %}
+                </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+        <p>Select a column:</p>
+        {% for col in range(7) %}
+        <input type="submit" name="column" value="{{ col + 1 }}">
+        {% endfor %}
+    </form>
+
+    {% if winner %}
+    <div class="winner">
+        {% if winner == 'Human' %}
+        <p>Congratulations! You won!</p>
+        {% elif winner == 'AI' %}
+        <p>The AI won this time.</p>
+        {% else %}
+        <p>It's a tie!</p>
+        {% endif %}
+    </div>
+    {% endif %}
+    <form action="{{ url_for('index') }}" method="get">
+        <input type="submit" value="Play Again">
+    </form>
+</body>
+</html>
