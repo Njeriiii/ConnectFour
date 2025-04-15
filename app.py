@@ -12,6 +12,7 @@ game_instances = {
     "Fail Hard Alpha Beta Pruning": ConnectFourFailHard,
 }
 
+game = game_instances["Plain Evaluation Function"]()  # Initialize with default game
 
 @app.route("/", methods=["GET", "POST"])
 def index():
