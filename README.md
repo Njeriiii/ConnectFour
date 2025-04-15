@@ -57,8 +57,8 @@ The heuristic evaluation function analyzes the board by:
 2. Assigning higher values to more favorable positions (e.g., three-in-a-row is worth more than two-in-a-row)
 3. Considering opponent's threats when calculating the score
 
-### Demo
-<div style="position: relative; padding-bottom: 53.22916666666667%; height: 0;"><iframe src="https://www.loom.com/embed/eafacac748094f6badc13372ca73e13e?sid=4ae76bef-cbc5-4e56-ac6a-66c7949e6854" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
+## Demo
+[[Watch a Demo!]](https://www.loom.com/share/eafacac748094f6badc13372ca73e13e?sid=b5b86410-36c1-4be8-ace5-13f9595f8a41)
 
 ## Getting Started
 
