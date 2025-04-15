@@ -90,7 +90,7 @@ pip install flask
 
 1. Start the Flask application:
 ```bash
-python app.py
+flask --app app.py --debug run
 ```
 
 2. Open your web browser and navigate to:
