@@ -3,6 +3,7 @@ from games.plain_eval import ConnectFourPlainEval
 
 from games.fail_hard import ConnectFourFailHard
 from games.fail_soft import ConnectFourFailSoft
+import os
 
 app = Flask(__name__)
 
@@ -68,3 +69,6 @@ def index():
         game_name=game_name,
         game_instances=game_instances,
     )
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 10000)))
